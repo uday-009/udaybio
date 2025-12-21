@@ -1,0 +1,26 @@
+[build]
+command = "npm run build"
+publish = "out"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[dev]
+command = "npm run dev"
+port = 3000
+
+[context.production]
+environment = { NODE_ENV = "production" }
+command = "npm run build"
+publish = "out"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Cache-Control = "public, max-age=3600, must-revalidate"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "SAMEORIGIN"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
