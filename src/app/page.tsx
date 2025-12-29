@@ -1,202 +1,252 @@
 'use client'
 
+import { useState } from 'react'
+
 export default function Home() {
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('uday.maroju@example.com')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
-    <main className="min-h-screen bg-primary">
-      <header className="fixed top-0 w-full bg-primary/80 backdrop-blur-md z-50 border-b border-secondary">
-        <nav className="section-container flex justify-between items-center h-20">
-          <h1 className="text-2xl font-bold gradient-text">Uday Maroju</h1>
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* Navigation */}
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <nav className="section-container flex justify-between items-center h-16">
+          <a href="#" className="text-xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent hover:opacity-80">UM</a>
           <div className="hidden md:flex gap-8">
-            <a href="#about" className="text-gray-300 hover:text-white transition">About</a>
-            <a href="#projects" className="text-gray-300 hover:text-white transition">Projects</a>
-            <a href="#skills" className="text-gray-300 hover:text-white transition">Skills</a>
-            <a href="#contact" className="text-gray-300 hover:text-white transition">Contact</a>
+            <a href="#work" className="text-gray-900 hover:text-black transition text-sm font-medium">Work</a>
+            <a href="#open-source" className="text-gray-900 hover:text-black transition text-sm font-medium">Open Source</a>
+            <a href="#contact" className="text-gray-900 hover:text-black transition text-sm font-medium">Contact</a>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-primary via-primary to-secondary">
-        <div className="section-container text-center">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 animate-slide-up">
-            Frontend <span className="gradient-text">Engineer</span>
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Building beautiful, responsive, and scalable web applications with modern technologies like React, TypeScript, and Tailwind CSS.
-          </p>
-          <div className="flex gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
-            <button className="btn-primary">Download Resume</button>
-            <button className="btn-secondary">Get In Touch</button>
+      <section className="pt-32 pb-24 bg-white">
+        <div className="section-container">
+          <div className="max-w-4xl">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+              Hi, I&apos;m <span className="bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Uday Maroju</span>
+              <span className="text-5xl md:text-6xl ml-2">👋</span>
+            </h1>
+            <p className="text-2xl md:text-3xl text-gray-900 mb-6 font-medium">
+              A Frontend Engineer
+            </p>
+            <p className="text-lg text-gray-600 max-w-2xl leading-relaxed mb-8">
+              I&apos;m a web developer based in India, specializing in React, TypeScript, and modern full-stack development. Building performant, scalable applications with clean code and exceptional user experiences.
+            </p>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="section-container">
-        <h3 className="text-4xl font-bold mb-8 gradient-text">About Me</h3>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="card">
-            <h4 className="text-2xl font-bold mb-4">Who I Am</h4>
-            <p className="text-gray-300 leading-relaxed">
-              I&apos;m a passionate Frontend Engineer with expertise in building modern web applications. With a strong foundation in React, TypeScript, and web technologies, I create intuitive user interfaces that solve real-world problems. I believe in writing clean, maintainable code and continuously learning new technologies.
+      <section id="about" className="section-container bg-white">
+        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">About</h2>
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="md:col-span-2">
+            <p className="text-gray-900 mb-6 text-lg leading-relaxed">
+              I&apos;m a passionate frontend engineer with deep expertise in building modern web applications. Specializing in React, TypeScript, and Node.js with a proven track record of delivering high-quality products for startups and enterprises.
+            </p>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              I blend aesthetics with problem-solving to create user-centric solutions. Currently focused on performance optimization, scalable architecture, and mentoring junior developers. I love exploring new technologies and contributing to open-source projects.
             </p>
           </div>
-          <div className="card">
-            <h4 className="text-2xl font-bold mb-4">My Approach</h4>
-            <p className="text-gray-300 leading-relaxed">
-              I focus on creating user-centered designs that are both beautiful and functional. I prioritize performance, accessibility, and code quality in every project. My goal is to deliver solutions that not only meet requirements but exceed expectations and provide lasting value.
-            </p>
+          <div className="space-y-4">
+            <p className="text-gray-600 text-sm uppercase tracking-wider">Contact</p>
+            <a href="mailto:uday.maroju@example.com" className="text-black hover:text-gray-700 transition flex items-center gap-2 font-medium text-lg">
+              uday.maroju@example.com
+              <span className="text-xs">→</span>
+            </a>
+            <button 
+              onClick={copyEmail}
+              className="text-black hover:text-gray-700 transition text-sm font-medium flex items-center gap-2"
+            >
+              {copied ? '✓ Copied!' : '📋 Copy email'}
+            </button>
+          </div>
+        </div>
+
+        {/* Companies/Clients Section */}
+        <div className="mt-20">
+          <p className="text-gray-600 text-sm uppercase tracking-wider mb-10">Worked with amazing teams at</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="h-20 bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center hover:border-black transition group cursor-pointer">
+              <span className="text-gray-600 text-sm font-medium group-hover:text-gray-900 transition">Company 1</span>
+            </div>
+            <div className="h-20 bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center hover:border-black transition group cursor-pointer">
+              <span className="text-gray-600 text-sm font-medium group-hover:text-gray-900 transition">Company 2</span>
+            </div>
+            <div className="h-20 bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center hover:border-black transition group cursor-pointer">
+              <span className="text-gray-600 text-sm font-medium group-hover:text-gray-900 transition">Company 3</span>
+            </div>
+            <div className="h-20 bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center hover:border-black transition group cursor-pointer">
+              <span className="text-gray-600 text-sm font-medium group-hover:text-gray-900 transition">Company 4</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="section-container bg-secondary/50">
-        <h3 className="text-4xl font-bold mb-8 gradient-text">Featured Projects</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ProjectCard 
-            title="E-commerce Platform"
-            description="Full-featured e-commerce platform built with React and Node.js"
-            tags={['React', 'TypeScript', 'MongoDB', 'Stripe']}
-          />
-          <ProjectCard 
-            title="Task Management App"
-            description="Collaborative task management application with real-time updates"
-            tags={['React', 'Firebase', 'Tailwind CSS', 'Redux']}
-          />
-          <ProjectCard 
-            title="Weather Dashboard"
-            description="Real-time weather dashboard with beautiful UI and animations"
-            tags={['React', 'API Integration', 'Framer Motion', 'Tailwind']}
-          />
-          <ProjectCard 
-            title="Portfolio Website"
-            description="Responsive portfolio website showcasing projects and skills"
-            tags={['Next.js', 'TypeScript', 'Tailwind CSS']}
-          />
-          <ProjectCard 
-            title="Analytics Dashboard"
-            description="Data visualization dashboard with interactive charts"
-            tags={['React', 'Chart.js', 'TypeScript', 'Material-UI']}
-          />
-          <ProjectCard 
-            title="Chat Application"
-            description="Real-time chat application with user authentication"
-            tags={['React', 'Socket.io', 'Node.js', 'MongoDB']}
-          />
+      {/* Open Source Contributions Section */}
+      <section id="open-source" className="section-container py-20 bg-white">
+        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Open Source Contributions</h2>
+        <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 hover:border-black transition">
+          <p className="text-gray-600 mb-4">
+            I actively contribute to open-source projects and believe in giving back to the developer community. Through contributions to major projects and maintaining my own packages, I&apos;ve helped thousands of developers build better applications.
+          </p>
+          <a href="https://github.com/uday-009" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-700 transition font-medium inline-flex items-center gap-2">
+            View on GitHub →
+          </a>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="section-container">
-        <h3 className="text-4xl font-bold mb-8 gradient-text">Skills & Technologies</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <SkillCategory 
-            title="Frontend"
-            skills={['React', 'TypeScript', 'JavaScript', 'Next.js', 'HTML5', 'CSS3']}
-          />
-          <SkillCategory 
-            title="Styling & UI"
-            skills={['Tailwind CSS', 'CSS-in-JS', 'Responsive Design', 'Material-UI', 'Bootstrap', 'SCSS']}
-          />
-          <SkillCategory 
-            title="Tools & Libraries"
-            skills={['Redux', 'React Query', 'Axios', 'Jest', 'Git', 'Webpack']}
-          />
-          <SkillCategory 
-            title="Backend & Databases"
-            skills={['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Firebase', 'REST APIs']}
-          />
-          <SkillCategory 
-            title="Deployment & DevOps"
-            skills={['Vercel', 'Docker', 'GitHub', 'CI/CD', 'AWS', 'Netlify']}
-          />
-          <SkillCategory 
-            title="Other"
-            skills={['Problem Solving', 'Code Review', 'Agile', 'Communication', 'Testing']}
-          />
+      {/* Open Source Projects Section */}
+      <section className="section-container py-20 bg-white">
+        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Open Source Projects</h2>
+        <div className="space-y-12">
+          {/* Project 1 */}
+          <div className="group grid md:grid-cols-3 gap-8 items-start hover:bg-gray-50 p-8 rounded-lg transition border border-transparent hover:border-gray-300">
+            <div className="md:col-span-1 h-40 bg-gray-200 rounded-lg border border-gray-300 group-hover:border-black transition"></div>
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">React Task Manager</h3>
+              <p className="text-gray-600 mb-4">
+                A lightweight and performant task management library built with React. Features real-time updates, offline support, and intuitive API for managing complex task flows in applications.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">React</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">TypeScript</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">NPM</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">GitHub</a>
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">NPM</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 2 */}
+          <div className="group grid md:grid-cols-3 gap-8 items-start hover:bg-gray-50 p-8 rounded-lg transition border border-transparent hover:border-gray-300">
+            <div className="md:col-span-1 h-40 bg-gray-200 rounded-lg border border-gray-300 group-hover:border-black transition order-2 md:order-1"></div>
+            <div className="md:col-span-2 order-1 md:order-2">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Form Validation Hooks</h3>
+              <p className="text-gray-600 mb-4">
+                A comprehensive set of form validation utilities and hooks for React. Simplifies form handling with built-in validators, error management, and accessibility features out of the box.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">React Hooks</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">TypeScript</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Testing</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">GitHub</a>
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">Docs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects & Works Section */}
+      <section id="work" className="section-container py-20 bg-white">
+        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Projects & Works</h2>
+        <div className="space-y-12">
+          {/* Work 1 */}
+          <div className="group grid md:grid-cols-3 gap-8 items-start hover:bg-gray-50 p-8 rounded-lg transition border border-transparent hover:border-gray-300">
+            <div className="md:col-span-1 h-40 bg-gray-200 rounded-lg border border-gray-300 group-hover:border-black transition"></div>
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">E-Learning Platform</h3>
+              <p className="text-gray-600 mb-4">
+                Comprehensive e-learning platform with video streaming, interactive quizzes, progress tracking, and instructor dashboard. Served 10,000+ students with real-time updates and engagement features.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Next.js</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">React</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Node.js</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">PostgreSQL</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">Visit</a>
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Work 2 */}
+          <div className="group grid md:grid-cols-3 gap-8 items-start hover:bg-gray-50 p-8 rounded-lg transition border border-transparent hover:border-gray-300">
+            <div className="md:col-span-1 h-40 bg-gray-200 rounded-lg border border-gray-300 group-hover:border-black transition order-2 md:order-1"></div>
+            <div className="md:col-span-2 order-1 md:order-2">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">SaaS Analytics Dashboard</h3>
+              <p className="text-gray-600 mb-4">
+                Enterprise-grade SaaS dashboard for customer analytics and reporting. Built with React, Redux, and real-time data visualization. Powers analytics for 500+ companies with complex queries.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">React</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Redux</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">D3.js</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">AWS</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">Visit</a>
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">Case Study</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Work 3 */}
+          <div className="group grid md:grid-cols-3 gap-8 items-start hover:bg-gray-50 p-8 rounded-lg transition border border-transparent hover:border-gray-300">
+            <div className="md:col-span-1 h-40 bg-gray-200 rounded-lg border border-gray-300 group-hover:border-black transition"></div>
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-2 text-gray-900">Mobile Commerce App</h3>
+              <p className="text-gray-600 mb-4">
+                Cross-platform mobile commerce application with product browsing, secure checkout, order tracking, and push notifications. Reached 100K+ downloads with excellent user retention.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">React Native</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">TypeScript</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Firebase</span>
+                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-900 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">Stripe</span>
+              </div>
+              <div className="flex gap-4">
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">App Store</a>
+                <a href="#" className="inline-flex items-center gap-1 text-black font-semibold hover:gap-2 transition">Play Store</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="section-container bg-secondary/50">
-        <h3 className="text-4xl font-bold mb-8 text-center gradient-text">Get In Touch</h3>
-        <div className="max-w-2xl mx-auto">
-          <form className="space-y-6">
-            <input 
-              type="text" 
-              placeholder="Your Name" 
-              className="w-full px-4 py-3 bg-primary rounded-lg border border-secondary focus:border-accent outline-none text-white placeholder-gray-500"
-            />
-            <input 
-              type="email" 
-              placeholder="Your Email" 
-              className="w-full px-4 py-3 bg-primary rounded-lg border border-secondary focus:border-accent outline-none text-white placeholder-gray-500"
-            />
-            <textarea 
-              placeholder="Your Message" 
-              rows={5}
-              className="w-full px-4 py-3 bg-primary rounded-lg border border-secondary focus:border-accent outline-none text-white placeholder-gray-500 resize-none"
-            />
-            <button type="submit" className="w-full btn-primary">Send Message</button>
-          </form>
-          
-          <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
-            <div className="card">
-              <h4 className="font-bold mb-2">Email</h4>
-              <a href="mailto:uday@example.com" className="text-accent hover:text-blue-400">uday@example.com</a>
-            </div>
-            <div className="card">
-              <h4 className="font-bold mb-2">LinkedIn</h4>
-              <a href="#" className="text-accent hover:text-blue-400">linkedin.com/in/uday</a>
-            </div>
-            <div className="card">
-              <h4 className="font-bold mb-2">GitHub</h4>
-              <a href="#" className="text-accent hover:text-blue-400">github.com/uday</a>
-            </div>
-          </div>
+      <section id="contact" className="section-container py-20 bg-white">
+        <h2 className="text-5xl font-bold mb-12 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Let&apos;s Connect</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          <a href="mailto:uday.maroju@example.com" className="group bg-gray-50 rounded-lg p-8 text-center hover:bg-white transition border border-gray-200 hover:border-black">
+            <div className="text-5xl mb-4">✉️</div>
+            <h3 className="text-lg font-bold mb-2 text-gray-900">Email</h3>
+            <p className="text-black text-sm group-hover:text-gray-700">uday.maroju@example.com</p>
+          </a>
+          <a href="https://linkedin.com/in/uday-maroju" target="_blank" rel="noopener noreferrer" className="group bg-gray-50 rounded-lg p-8 text-center hover:bg-white transition border border-gray-200 hover:border-black">
+            <div className="text-5xl mb-4">💼</div>
+            <h3 className="text-lg font-bold mb-2 text-gray-900">LinkedIn</h3>
+            <p className="text-black text-sm group-hover:text-gray-700">Connect with me</p>
+          </a>
+          <a href="https://github.com/uday-009" target="_blank" rel="noopener noreferrer" className="group bg-gray-50 rounded-lg p-8 text-center hover:bg-white transition border border-gray-200 hover:border-black">
+            <div className="text-5xl mb-4">💻</div>
+            <h3 className="text-lg font-bold mb-2 text-gray-900">GitHub</h3>
+            <p className="text-black text-sm group-hover:text-gray-700">View my projects</p>
+          </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary border-t border-secondary py-8">
-        <div className="section-container text-center text-gray-400">
+      <footer className="bg-gray-100 border-t border-gray-200 py-8">
+        <div className="section-container text-center text-gray-600">
           <p>&copy; 2024 Uday Maroju. All rights reserved.</p>
           <p className="text-sm mt-2">Built with Next.js, React, and Tailwind CSS</p>
         </div>
       </footer>
     </main>
-  )
-}
-
-function ProjectCard({ title, description, tags }: { title: string; description: string; tags: string[] }) {
-  return (
-    <div className="card group cursor-pointer">
-      <div className="h-40 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg mb-4 group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all"></div>
-      <h4 className="text-xl font-bold mb-2">{title}</h4>
-      <p className="text-gray-400 mb-4 text-sm">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span key={tag} className="text-xs px-3 py-1 bg-blue-900/30 text-blue-300 rounded-full">
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function SkillCategory({ title, skills }: { title: string; skills: string[] }) {
-  return (
-    <div className="card">
-      <h4 className="text-xl font-bold mb-4 text-accent">{title}</h4>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill) => (
-          <span key={skill} className="px-3 py-2 bg-blue-900/20 text-blue-300 rounded-lg text-sm font-medium">
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
   )
 }
